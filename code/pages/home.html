@@ -1,0 +1,25 @@
+<psk-container controller-name="HomePageController">
+    <psk-page title="Upload image">
+        <psk-files-chooser label="Select files" event-name="chooseFile"></psk-files-chooser>
+        <psk-button label="Send user data" event-name="get-photos">
+            <psk-icon icon="user" color="rgb(255, 255, 255)"></psk-icon>
+        </psk-button>
+        <psk-condition condition="@isLoading">
+            <p><strong>Loading...</strong></p>
+        </psk-condition>
+        <psk-condition condition="@loadingFinished">
+            <p><strong>Success</strong></p>
+        </psk-condition>
+        <psk-for-each style="display: flex; flex-wrap: wrap; margin-top: 25px" data-view-model="entities">
+            <div>
+                <psk-img src="@name"></psk-img>
+                <psk-button event-data="@photoName" event-name="photo-details">
+                    <psk-link id="pskLink" page="image-details">
+                        Details
+                    </psk-link>
+                </psk-button>
+            </div>
+        </psk-for-each>
+    </psk-page>
+</psk-container>
+

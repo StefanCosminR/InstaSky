@@ -1,0 +1,21 @@
+<psk-container controller-name="ImageDetailsController">
+    <psk-page title="Image details" style="margin-left: 20pt">
+        <psk-img src="@imageURL"></psk-img>
+
+        <psk-form controller-name="ImageDetailsController" style="margin-bottom: 50px">
+            <psk-form-row layout="xs=[12,12] m=[6,6] l=[12,12] xl=[6,6]">
+                <psk-label view-model="commentTitle"></psk-label>
+                <psk-text-input view-model="comment"></psk-text-input>
+            </psk-form-row>
+            <psk-button label="Submit" event-name="submit-comment"></psk-button>
+        </psk-form>
+
+        <psk-chapter title="Comments">
+            <psk-for-each data-view-model="comments">
+                <div>
+                    <psk-label label="@comm"></psk-label>
+                </div>
+            </psk-for-each>
+        </psk-chapter>
+    </psk-page>
+</psk-container>

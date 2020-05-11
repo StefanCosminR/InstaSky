@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>PSK App Core</title>
+    <link href="/resources/css/main.css" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+</head>
+
+<body>
+    <psk-app-root>
+        <header>
+            <img class="cardinal-logo" width="38px" height="38px" src="/resources/images/cardinal.png" />
+            <app-menu></app-menu>
+        </header>
+        <section>
+            <psk-app-router failRedirectTo="/home"></psk-app-router>
+        </section>
+    </psk-app-root>
+
+    <script>
+        globalConfig = {
+            theme: "default"
+        }
+    </script>
+    <script src="/scripts/bundles/webshims.js"></script>
+    <script src="/scripts/bundles/pskruntime.js"></script>
+    <script src="/scripts/bundles/edfsBar.js"></script>
+    <script type="module" src="/cardinal/cardinal.esm.js"></script>
+    <script nomodule src="/cardinal.js"></script>
+
+    <script>
+
+        console.log('este ceva?????', require('edfs'))
+        const EDFS = require('edfs');
+
+        const edfs = EDFS.attachToEndpoint("http://127.0.0.1:8080/");
+        console.log('ce metode avem?', edfs);
+
+        const bar = edfs.createBar();
+        const doss = edfs.createRawDossier();
+
+        // window.theBar = bar;
+
+        console.log('avem asa ceva???', window);
+
+        console.log('dos', doss);
+        bar.listFiles('/', (err, files) => {
+            console.log('files', err, files);
+        })
+        // bar.createFolder('/photos-upload', (err, ...args) => {
+        //     if
+        // })
+        // bar.listFolders('/', (err, folders) => {
+        //     console.log('folders', err, folders);
+        // })
+        bar.writeFile("just_a_path", "some_content", (err) => {
+
+        })
+
+        // const se = require("swarm-engine");
+        // se.initialise();
+        //
+        // // const pskCommunicationNodeAddrs = ["http://127.0.0.1:8080/", "http://localhost:8080/"];
+        // //
+        // // const powerCord = new se.SmartRemoteChannelPowerCord(pskCommunicationNodeAddrs);
+        // // $$.swarmEngine.plug("*", powerCord);
+        //
+        // $$.swarms.describe("listDossierFiles", {
+        //     start: function (path) {
+        //         if (rawDossier) {
+        //             return rawDossier.listFiles(path, this.return);
+        //         }
+        //
+        //         this.return(new Error("Dossier is not available."))
+        //     }
+        // });
+        //
+        // $$.interactions.startSwarmAs('test/agent/system', 'listDossierFiles', 'start', '')
+        // .onReturn((...args) => {
+        //     console.log('A VENIT DOSSIERUL');
+        //     console.log('args', args);
+        // })
+
+
+        // $$.asset.describe("Image", {
+        //     public: {
+        //         alias: 'string',
+        //         data: 'string'
+        //     },
+        //     init: function(alias, data) {
+        //         this.alias = alias;
+        //         this.data = data;
+        //     }
+        // })
+        //
+        // $$.transaction.describe('FileManager', {
+        //     addFile: function(alias, data) {
+        //         let image = this.transaction.lookup('Image', alias)
+        //
+        //         if (!image) {
+        //             image = this.transaction.createAsset("Image", init, alias, data)
+        //         } else {
+        //             $$.exception(`Image with alias ${alias} already exists`);
+        //         }
+        //
+        //
+        //         this.transaction.add(image);
+        //
+        //         this.onCommit(()=>{
+        //             this.return(undefined, image.asJSON());
+        //         });
+        //
+        //         this.commit();
+        //     }
+        // })
+        //
+        // console.log('blockchain', $$.blockchain);
+    </script>
+</body>
+
+</html>
